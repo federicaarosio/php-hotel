@@ -40,6 +40,28 @@
 
     ];
 
+    $allFilters = $hotels;
+
+    $parking = $_GET['parking'];
+
+    if($parking == true) {
+        $hotelsWithParking = [];
+        foreach($hotels as $hotel) {
+            if ($hotel['parking']) {
+                $hotelsWithParking[] = $hotel;
+            }
+        }
+
+        $allFilters = $hotelsWithParking;
+    };
+
+    
+
+
+    // $vote = $_GET["vote"];
+
+    
+
 ?>
 
 
@@ -56,15 +78,44 @@
 </head>
 
 <body>
-    <div>
+    <div class="container">
 
-        <h1>
+        <h1 class="text-center mt-5 mb-5">
             Hotels
         </h1>
-        <div>
 
+        <div class="">
+            <h3>
+                Filters
+            </h3>
+            <form action="./index.php" method="$_GET" class="mb-5">
+                <!-- Disponibilità parcheggio -->
+                <select class="mb-3" name="parking">
+                    <option selected>All</option>
+                    <option value=true>With parking</option>
+                    <option value=false>No parking</option>
+                </select>
+
+                <!-- Voto dell'hotel -->
+                <label for="vote">Vote:</label>
+                <select class="mb-3" name="vote">
+                    <option selected>All votes </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+
+
+            </form>
         </div>
-        <table class="table">
+
+        <table class="table table-striped table-bordered container">
             <thead>
                 <tr>
                     <th>
